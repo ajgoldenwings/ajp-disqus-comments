@@ -1,0 +1,84 @@
+<!doctype html>
+
+
+
+<!-- update update update update update update update update update update update on bottom -->
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>ajp-disqus-comments demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../ajp-disqus-comments.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic ajp-disqus-comments demo</h3>
+      <demo-snippet>
+        <template>
+					<ajp-disqus-comments subdomain="anthonyjamespearson" identifier="demo"><div id="disqus_thread"></div></ajp-disqus-comments>
+        </template>
+      </demo-snippet>
+    </div>
+	</body>
+
+<script>
+// (function() { // DON'T EDIT BELOW THIS LINE
+// var d = document, s = d.createElement('script');
+// s.src = 'https://anthonyjamespearson.disqus.com/embed.js';
+// s.setAttribute('data-timestamp', +new Date());
+// console.log(d.head);
+// (d.head || d.body).appendChild(s);
+// })();
+(function() { // DON'T EDIT BELOW THIS LINE
+var dsq = document.createElement('script');
+var head = document.getElementsByTagName('head')[0];
+var body = document.getElementsByTagName('body')[0];
+dsq.type = 'text/javascript';
+dsq.async = true;
+dsq.src = 'https://anthonyjamespearson.disqus.com/embed.js';
+(head || body).appendChild(dsq);})();
+</script>
+</html>
+
+<!-- update update update update update update update update update update update below -->
+<!--
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      padding: 40px;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      color: #666;
+    }
+    disqus-comments {
+      margin: 20px 0;
+    }
+    #disqus_thread p {
+      color: #333;
+    }
+    #disqus_thread a {
+      color: hotpink;
+    }
+  </style>
+</head>
+<body unresolved>
+  <h1>disqus-comments</h1>
+  <p>Show Disqus comments in your Shadow DOM. Just provide a shortname and you're good to go!</p>
+  <disqus-comments shortname="disqus-comments-polymer"></disqus-comments>
+ -->

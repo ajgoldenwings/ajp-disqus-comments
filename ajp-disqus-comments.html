@@ -1,0 +1,103 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="ajp-disqus-comments">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+		</style>
+
+		<div id="disqus">
+			<slot></slot>
+		</div>
+  </template>
+
+  <script>
+    /**
+     * `ajp-disqus-comments`
+     * Disqus web component for comments
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class AjpDisqusComments extends Polymer.Element {
+      static get is() { return 'ajp-disqus-comments'; }
+      static get properties() {
+        return {
+					categoryId: {
+            type: String,
+            value: '',
+						notify: true
+					},
+					/**
+					* Force HTTPS when loading Disqus embed script.
+					*/
+					https: {
+						type: Boolean,
+						value: false,
+						notify: true
+					},
+					/**
+					 * Unique string that is used to find a page's thread.
+					 */
+					identifier: {
+            type: String,
+            value: '',
+						notify: true,
+						observer: '_identifierChanged'
+					},
+					subdomain: {
+            type: String,
+            value: '',
+						notify: true
+					},
+					title: {
+            type: String,
+            value: '',
+						notify: true
+					},
+					url: {
+            type: String,
+            value: '',
+						notify: true
+					}
+        };
+      }
+			ready() {
+				super.ready();
+
+				if (this.subdomain) {
+					var disqus_subdomain = this.subdomain;
+				} else {
+					return console.error('Required: Please provide a Disqus subdomain.');
+				}
+
+				var dsq = document.createElement('script');
+				var http = (this.https) ? 'https' : 'http';
+				dsq.type = 'text/javascript';
+				dsq.async = true;
+				dsq.src = http + '://' + disqus_subdomain + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			}
+
+			reset() {
+				reset(this.identifier.substring(0,10).replace(/-/g, ''), 'http://' + this.subdomain + '.com/post/' + this.identifier, this.identifier.substring(11).replace(/-/g, ' '), 'en');
+			}
+
+			/**
+			 * Keeps running until window.DISQUS defined
+			 */
+			_identifierChanged(newValue, oldValue, that = this) {
+				if (typeof window.DISQUS !== 'undefined') {
+					that.reset();
+				} else {
+					setTimeout(this._identifierChanged, 1000, newValue, oldValue, that);
+				}
+			}
+    }
+
+    window.customElements.define(AjpDisqusComments.is, AjpDisqusComments);
+  </script>
+</dom-module>
