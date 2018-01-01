@@ -1,6 +1,6 @@
-# \<ajp-disqus-comments\>
+# \<ajp-disqus-comments\> for Polymer 2.0
 
-Disqus web component for comments
+Disqus web component for comments using Polymer 2.0.
 
 ## Install the Polymer-CLI
 
@@ -15,6 +15,27 @@ You may pass this as a template. From your root page, ie `index.html`:
 ```
 <my-app><div id="disqus_thread"></div></my-app>
 ```
+
+Also in the `index.html` you must place:
+
+```
+<script type="text/javascript">
+	/* * * Disqus Reset Function * * */
+	var reset = function (newIdentifier, newUrl, newTitle, newLanguage) {
+		DISQUS.reset({
+			reload: true,
+			config: function () {
+				this.page.identifier = newIdentifier;
+				this.page.url = newUrl;
+				this.page.title = newTitle;
+				this.language = newLanguage;
+			}
+		});
+	};
+</script>
+```
+
+This is because i wasn't really figuring out how to access the `this.page` within the component. If anyone has any fixes let me know. Also, be wary that the `this.page.url` variable did not seem to like hashes in it. Removing this helped. Then you have to update your site to route a non hash url to a hash url. I resolved this in one of my commits to my blog.
 
 In `my-app.html` place `<slot></slot>` where you want the disqus thread to show up. You may place this as a template in another element and repeat the process.
 

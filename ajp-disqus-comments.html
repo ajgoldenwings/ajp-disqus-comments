@@ -83,7 +83,8 @@
 			}
 
 			reset() {
-				reset(this.identifier.substring(0,10).replace(/-/g, ''), 'http://' + this.subdomain + '.com/post/' + this.identifier, this.identifier.substring(11).replace(/-/g, ' '), 'en');
+				var http = (this.https) ? 'https' : 'http';
+				reset(this.identifier.substring(0,10).replace(/-/g, ''), http + '://' + this.subdomain + '.com/post/' + this.identifier, this.identifier.substring(11).replace(/-/g, ' '), 'en');
 			}
 
 			/**
