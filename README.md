@@ -8,6 +8,10 @@ First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polyme
 
 ## Specific Setup
 
+```
+bower install ajp-disqus-comments
+```
+
 You must place `<div id="disqus_thread"></div>` in your root index page since the `embed.js` file that is imported is not able to look through layers in the DOM.
 
 You may pass this as a template. From your root page, ie `index.html`:
